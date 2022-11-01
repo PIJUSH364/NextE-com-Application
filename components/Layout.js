@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Head from 'next/head';
 import { Stack, Typography } from '@mui/material';
 import Link from 'next/link';
+import { Store } from '../utils/Store';
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 // import index from '../styles/index.module.css';
 function Layout({ children, title }) {
+  const { state, dispatch } = useContext(Store);
+  const { cart } = state;
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge': {
+      right: -3,
+      top: 13,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: '0 4px',
+    },
+  }));
   return (
     <>
       <Head>
@@ -32,7 +47,24 @@ function Layout({ children, title }) {
             </Link>
             <Stack direction="row" spacing={1}>
               <Link href="/card">
-                <Typography>Card</Typography>
+                <>
+                  <IconButton aria-label="cart">
+                    <StyledBadge
+                      badgeContent={
+                        cart.cartItems.length > 0
+                          ? cart.cartItems.reduce(
+                              (previousCartValue, currentItem) =>
+                                previousCartValue + currentItem.quantity,
+                              0
+                            )
+                          : 0
+                      }
+                      color="error"
+                    >
+                      <ShoppingCartIcon />
+                    </StyledBadge>
+                  </IconButton>
+                </>
               </Link>
               <Link href="/login">
                 <Typography>login</Typography>
