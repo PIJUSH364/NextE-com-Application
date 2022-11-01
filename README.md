@@ -19,3 +19,5 @@
     iv)add reducer
     v)create store provider
     vi)handle add to cart button
+
+    1hr 26 min
