@@ -10,6 +10,7 @@ import { Stack } from '@mui/system';
 import { Store } from '../../utils/Store';
 export default function ProductDealils() {
   const { state, dispatch } = useContext(Store);
+  const router = useRouter();
   const { query } = useRouter();
   const { slug } = query;
   const product = data.products.find((e) => e.slug === slug);
@@ -24,6 +25,7 @@ export default function ProductDealils() {
     );
     const quantity = existItem ? existItem.quantity + 1 : 1;
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+    router.push('/cart');
     if (product.countInStock < quantity) {
       alert("You don't have to cart this item ");
       return;
