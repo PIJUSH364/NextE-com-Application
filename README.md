@@ -1,3 +1,6 @@
+Deploy : >> vercel env value
+         >> NEXT_PUBLIC_ANALYTICS_ID
+
 6.  list of product
     i) add data.js
     ii)add images
@@ -39,3 +42,10 @@ N.B: npm i -D @types/react===>when routing use
         >>next setup cart page convrt dynamic ssr =false
         >>simiarlly change layout page use useeffect ,whent cartitem value change 
     2. save and retreive cart items in cookies
+    
+12. Create Login Form
+    1. install react hook form
+    2. create input boxes
+    3. add login button
+
+    2hr 10 min
